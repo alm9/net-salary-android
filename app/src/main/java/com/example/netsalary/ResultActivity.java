@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -22,6 +23,9 @@ public class ResultActivity extends AppCompatActivity {
         int dependents = intent.getIntExtra(MainActivity.DEPENDENTS,0);
         double discounts = intent.getDoubleExtra(MainActivity.DISCOUNTS,0);
 
+        //implement calculus logic
+        buildLayout(grossSalary, dependents, discounts);
+
         btnBackToHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -34,5 +38,47 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void buildLayout(double grossSalary, int dependents, double othersDiscounts) {
+        TextView textViewGrossSalary = (TextView)findViewById(R.id.textViewGrossSalary);
+        TextView textViewINSS  = (TextView)findViewById(R.id.textViewINSS);
+        TextView textViewIRPF = (TextView)findViewById(R.id.textViewIRPF);
+        TextView textViewOthers = (TextView)findViewById(R.id.textViewOthers);
+        TextView textViewNetSalary = (TextView)findViewById(R.id.textViewNetSalary);
+        TextView textViewDiscounts = (TextView)findViewById(R.id.textViewDiscounts);
+
+        double valueOfINSS = calculateINSS(grossSalary);
+
+        double calculationBasisIRPF = grossSalary - valueOfINSS - (189.59*dependents);
+        double valueOfIRPF = calculateIRPF(calculationBasisIRPF);
+
+        double netSalary = grossSalary - valueOfINSS - valueOfIRPF - othersDiscounts;
+
+        double discountsPercentage = (1-netSalary/grossSalary)*100;
+
+        textViewGrossSalary.setText(String.valueOf(grossSalary));
+        textViewINSS.setText(String.valueOf(valueOfINSS));
+        textViewIRPF.setText(String.valueOf(valueOfIRPF));
+        textViewOthers.setText(String.valueOf(othersDiscounts));
+        textViewNetSalary.setText(String.valueOf(netSalary));
+        textViewDiscounts.setText(String.valueOf(discountsPercentage));
+
+    }
+
+    private double calculateIRPF(double calculationBasisIRPF) {
+        if (calculationBasisIRPF<=1903.98) return 0;
+        if (calculationBasisIRPF<=2826.65) return calculationBasisIRPF * 0.075 - 142.80;
+        if (calculationBasisIRPF<=3751.05) return calculationBasisIRPF * 0.15 - 354.80;
+        if (calculationBasisIRPF<=4664.68) return calculationBasisIRPF * 0.225 - 636.13;
+        return calculationBasisIRPF*0.275 - 869.36;
+    }
+
+    private double calculateINSS(double grossSalary) {
+        if (grossSalary<=1045) return grossSalary * 0.075;
+        if (grossSalary<=2089.60) return grossSalary * 0.09 - 15.67;
+        if (grossSalary<=3134.40) return grossSalary * 0.12 - 78.36;
+        if (grossSalary<=6101.06) return grossSalary * 0.14 - 141.05;
+        return 713.10;
     }
 }
