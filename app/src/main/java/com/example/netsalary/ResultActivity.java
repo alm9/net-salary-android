@@ -16,6 +16,12 @@ public class ResultActivity extends AppCompatActivity {
 
         Button btnBackToHome = (Button)findViewById(R.id.btnBackToHome);
 
+        //Receive values from Home Screen
+        Intent intent = getIntent();
+        double grossSalary = intent.getDoubleExtra(MainActivity.GROSS_SALARY,0);
+        int dependents = intent.getIntExtra(MainActivity.DEPENDENTS,0);
+        double discounts = intent.getDoubleExtra(MainActivity.DISCOUNTS,0);
+
         btnBackToHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
