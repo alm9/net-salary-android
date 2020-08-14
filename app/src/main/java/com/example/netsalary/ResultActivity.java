@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class ResultActivity extends AppCompatActivity {
 
     @Override
@@ -57,13 +59,19 @@ public class ResultActivity extends AppCompatActivity {
 
         double discountsPercentage = (1-netSalary/grossSalary)*100;
 
-        textViewGrossSalary.setText(String.valueOf(grossSalary));
-        textViewINSS.setText(String.valueOf(valueOfINSS));
-        textViewIRPF.setText(String.valueOf(valueOfIRPF));
-        textViewOthers.setText(String.valueOf(othersDiscounts));
-        textViewNetSalary.setText(String.valueOf(netSalary));
-        textViewDiscounts.setText(String.valueOf(discountsPercentage));
+        textViewGrossSalary.setText(String.valueOf(formatDouble(grossSalary)));
+        textViewINSS.setText(String.valueOf(formatDouble(valueOfINSS)));
+        textViewIRPF.setText(String.valueOf(formatDouble(valueOfIRPF)));
+        textViewOthers.setText(String.valueOf(formatDouble(othersDiscounts)));
+        textViewNetSalary.setText(String.valueOf(formatDouble(netSalary)));
+        textViewDiscounts.setText(String.valueOf(formatDouble(discountsPercentage))+'%');
 
+    }
+
+    //format
+    private double formatDouble(double number){
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        return Double.valueOf(decimalFormat.format(number));
     }
 
     private double calculateIRPF(double calculationBasisIRPF) {
