@@ -19,13 +19,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewResults"
             android:layout_width="137dp"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:text="Results"
+            android:textColor="@color/titleColor"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -50,7 +51,8 @@
                     android:id="@+id/textViewGrossSalary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="30dp"
                     android:text="0.00"
                     android:textSize="18sp" />
             </TableRow>
@@ -71,9 +73,10 @@
                     android:id="@+id/textViewINSS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="30dp"
                     android:text="0.00"
-                    android:textColor="#5E0000"
+                    android:textColor="@color/salaryDiscounts"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -92,10 +95,11 @@
                 <TextView
                     android:id="@+id/textViewIRPF"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="30dp"
                     android:text="0.00"
-                    android:textColor="#5E0000"
+                    android:textColor="@color/salaryDiscounts"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -114,10 +118,11 @@
                 <TextView
                     android:id="@+id/textViewOthers"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="30dp"
                     android:text="0.00"
-                    android:textColor="#5E0000"
+                    android:textColor="@color/salaryDiscounts"
                     android:textSize="18sp" />
             </TableRow>
 
@@ -139,7 +144,8 @@
                     android:id="@+id/textViewNetSalary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="30dp"
                     android:text="0.00"
                     android:textColor="#011ABC"
                     android:textSize="18sp"
@@ -164,7 +170,8 @@
                     android:id="@+id/textViewDiscounts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="30dp"
                     android:text="0.00%"
                     android:textSize="18sp"
                     android:textStyle="bold" />
